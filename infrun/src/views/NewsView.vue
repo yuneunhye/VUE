@@ -1,23 +1,19 @@
 <template>
     <div id="container">
-       <div v-for="(user,idx) in users" :key="idx">
-        {{ user.title }}
+       <div v-for="(item,idx) in news" :key="idx">
+        {{ item.title }}
        </div>
     </div>
 </template>
 <script setup>
-import { fetchNewsList } from '../api/index.js';
 import {ref, onBeforeMount } from 'vue';
+import { useIndexStore } from '../stores/index.js'
+const store= useIndexStore();
+const { news , getNews }= store
 
-const users=ref([])
 
 onBeforeMount(() => {
-     fetchNewsList()
-        .then((res) => {
-            console.log(res)
-            users.value = res.data;
-        })
-        .catch((err) => { console.log(err) });
+     store.FETCH_NEWS()
 })
    
 

@@ -6,18 +6,14 @@
     </div>
 </template>
 <script setup>
-import { fetchJobsList } from '../api/index.js';
 import { ref, onBeforeMount } from 'vue';
+import { useIndexStore } from '../stores/index.js'
+const store = useIndexStore();
+const {jobs}=store
 
-const jobs = ref([])
 
 onBeforeMount(() => {
-    fetchJobsList()
-        .then((res) => {
-            console.log(res)
-            jobs.value = res.data;
-        })
-        .catch((err) => { console.log(err) });
+  store.FETCH_JOBS
 })
 </script>
 <style scoped>

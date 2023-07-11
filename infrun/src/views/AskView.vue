@@ -1,24 +1,21 @@
 <template>
     <div id="container">
-        <div v-for="(item, idx) in ask" :key="idx">
+        <div v-for="(item, idx) in asks" :key="idx">
             {{ item.title }}
         </div>
 
     </div>
 </template>
 <script setup>
-import { fetchAsksList } from '../api/index.js';
-import { ref, onBeforeMount } from 'vue';
 
-const ask = ref([])
+import { ref, onBeforeMount } from 'vue';
+import { useIndexStore } from '../stores/index.js'
+const store = useIndexStore();
+const {asks} =store;
+
 
 onBeforeMount(() => {
-    fetchAsksList()
-        .then((res) => {
-            console.log(res)
-            ask.value = res.data;
-        })
-        .catch((err) => { console.log(err) });
+    store.FETCH_ASKS()
 })
 
 
