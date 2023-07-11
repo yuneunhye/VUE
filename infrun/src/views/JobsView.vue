@@ -1,8 +1,11 @@
 <template>
     <div id="container">
-        <div v-for="(job, idx) in jobs" :key="idx">
-                {{ job.title }}
-        </div>
+        <p  v-for="(job, idx) in jobs" :key="idx">
+              <a :href="job.url">
+                  {{ job.title }}
+              </a>
+              <small>{{ job.domain }}</small>
+          </p>
     </div>
 </template>
 <script setup>
@@ -13,7 +16,7 @@ const {jobs}=store
 
 
 onBeforeMount(() => {
-  store.FETCH_JOBS
+  store.FETCH_JOBS()
 })
 </script>
 <style scoped>
