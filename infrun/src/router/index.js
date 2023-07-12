@@ -3,6 +3,7 @@ import AskView from '../views/AskView.vue'
 import JobsView from '../views/JobsView.vue'
 import NewsView from '../views/NewsView.vue'
 import UserView from '../views/UserView.vue'
+import AskTitleview from '../views/AskTitleview.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,12 @@ const router = createRouter({
       path: '/user/:id',
       name: 'user',
       component:UserView
+     
+    },
+      {
+      path: '/item/:id',
+      name: 'askTitleview',
+      component:AskTitleview
      
     }
   ]
